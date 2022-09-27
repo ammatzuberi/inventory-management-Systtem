@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details </title> 
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <!-- <title>Bootstrap Example</title> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="productdetail.css">
+</head>
+
+<body>
+  <!-- form product details  -->
+  
+
+
+  <!--  -->
+
+
+
+
+  <div class="topnav">
+
+    <ul>
+    
+      
+      <li>    <a href="product.html"><button class='backbtn' > < BACK</button></a></li>
+   
+      <li><p    id="showcard"  class="formproduct"href="#news">Product Out Form</p></li>
+      <li><p     class="Returnform" href="#contact">Return Form</p></li>
+  
+
+   
+  <li><p   style="float: right;"  onclick="  Logout();" class= "logoutbtn" href="#contact">Logout</p></li>
+
+  
+  <!-- <li  class= "navbarpages" style="float:right"><a class="active" href="#about">About</a></li> -->
+  
+  
+</div>
+ 
+   
+  </ul>
+ 
+  <div class="topnav"> 
+
+    
+
+
+  
+    <li>
+    
+    </li>
+   
+<li>
+
+</li>
+<li>
+
+  <button class="formproduct">   DATA Out FORM</button>
+</li>
+  <li>
+
+    <button class="Returnform">  Return Product Form</button>
+  </li>
+
+    <button class="logoutbtn" onclick="Logout();" style="float: right;">Logout</button>
+   
+    <!-- <a href="Returnproduct.html"> Return Form</a> -->
+  </div>  <h3  class="welcome">Welcome:   <script >document.write(localStorage.getItem('name'));</script></h3>
+
+
+
+  <div class="Returndata">
+ 
+    
+    <div class="Returndataform">
+      <div class="closeReturn " >+ </div>
+
+      <!-- <div class="left1"> -->
+       <!-- <div class="header"> -->
+    
+        <div class="form">
+   
+      <!-- <div class="col-sm-6" > -->
+        <h2>Return Form</h2>
+        <form action="#" class="form">
+          <div class="form-group">
+            <label for="name">Product Name :</label>
+            <h6         id="productnameReturn"> </h6>
+
+            
+              <!-- type="text"
+              class="form-control"
+              id="productnameReturn"
+              placeholder="Enter Product Name"
+              name="email" -->
+          </h3>
+          </div>
+    
+          <div class="form-group">
+            <label for="Employee">Employee Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ReturnName"
+              placeholder="Enter Employee Name"
+              name="Employee Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Quantity">Quantity IN :</label>
+            <input
+              type="number"
+              class="form-control"
+              id="Returnquantity_in"
+              placeholder="Enter Quantity Out"
+              name="Quantity Out" required
+            />
+          </div>
+            <div class="options" >
+            <label>
+              <!-- <input type="checkbox" name="category" id="fineproduct" value="Fine" /> 
+              <span class="bubble business"></span>
+              <div>Product Is Fine</div> -->
+            </label>
+            <label>
+              <input type="checkbox" name="category" id="brokenproduct" value="Broken " />
+              <span class="bubble personal"></span>
+              <div>Broken Product</div>
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="Date">Date :</label>
+            <input
+            type="date"
+              class="form-control"
+              id="returnDate"
+              placeholder="Enter Date"
+              name="Date"
+              />
+            </div>
+            <div class="form-group">
+              <label for="Department">Department :</label>
+              <input
+              type="text"
+                class="form-control"
+                id="returnDepartmanet"
+                placeholder="Enter department"
+                name="department"
+                required
+                />
+              </div>
+            <!-- <div class="form-group">
+              <label for="id">UID :</label>
+              
+              <h6 id="productidReturn"> </h6>
+            </div>
+            <div class="form-group">
+              <label for="id">Stock Left :</label>
+              
+              <h6 id="stockleft"> </h6>
+            </div> -->
+            
+            <!-- <button class="btnsubmit" id="submit" onclick=" updateproduct('${user.uid}')">SAVE</button>  -->
+            
+            <button
+              type="button"
+              onclick=" returnstock('${user.uid}');"  
+              id="save_btn"
+              class='Returnsave'
+            >
+            Submit
+          </button>
+     
+        </form>
+      </div>
+     </div>
+    </div> 
+  </div>
+
+ <!-- <div class="main"> -->
+<div class="card">
+  <div class="left">
+    <img class="cardimage" id="imagecard" alt="...">
+  </div>
+   <div class="right">
+    <!-- <div class="product-info"> -->
+      
+     
+           <!-- <div class="details"> -->
+          <h1 id="Namecard"> </h1>
+
+        <h3 >Total Stock:<span id="quantitycard"></span></h4>
+          <h3 >Damaged Stock:<span id="DamageditemCard"></span></h4>
+          <h4  >Price ₹: <span id="Pricecard"></span></h4>
+          <h3 >Area :<span id="areacard"></span></h3>
+                 <p >Manufacture: <span id="Manufacturecard"></span></p>
+          <p >Serial No: <span id="Serialcard"></span></p>
+          <h1  class="stockleft" >Stock Left: <span id="Stockcard"></span></h1>
+    
+           <!-- </div> -->
+          </div>
+        </div>
+      </details>
+    </div>
+ </div>
+</div> 
+
+</div>
+
+  
+  <div class="bg-model">
+ 
+    
+    <div class="adddata">
+      <div class="close " >+ </div>
+
+    <!-- <div class="left1"> -->
+      <!-- <div class="header"> -->
+    
+        <div class="form">
+   
+      <!-- <div class="col-sm-6" > -->
+        <h2>Summary Form</h2>
+        <form action="#" class="form">
+          <!-- <div class="form-group"> -->
+            <label for="name">Product Name :</label>
+            <!-- <span id=" productname">
+
+
+            </span>
+               -->
+            <h6 id="productname"> </h6>
+              <!-- type="text"
+              class="form-control"
+              id="productname"
+              placeholder="Enter Product Name"
+              name="email"
+            /> -->
+          <!-- </div> -->
+    
+          <div class="form-group">
+            <label for="Employee">Employee Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="Employeename"
+              placeholder="Enter Employee Name"
+              name="Employee Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Quantity">Quantity Out :</label>
+            <input
+              type="number"
+              class="form-control"
+              id="Quantity"
+              placeholder="Enter Quantity Out"
+              name="Quantity Out" required
+            />
+          </div>
+          <div class="form-group">
+            <label for="Date">Date :</label>
+            <input
+            type="date"
+              class="form-control"
+              id="outDate"
+              placeholder="Enter Date"
+              name="Date"
+              />
+            </div>
+            <div class="form-group">
+              <label for="Department">Department :</label>
+              <input
+              type="text"
+                class="form-control"
+                id="department"
+                placeholder="Enter department"
+                name="department"
+                required
+                />
+              </div>
+            <!-- <div class="form-group">
+              <label for="id">UID :</label>
+              
+              <h6 id="productid"> </h6>
+            </div>
+            <div class="form-group">
+              <label for="id">Stock Left :</label>
+              
+              <h6 id="stockleft"> </h6>
+            </div> -->
+            
+            <!-- <button class="btnsubmit" id="submit" onclick=" updateproduct('${user.uid}')">SAVE</button>  -->
+            
+            <button
+              type="button"
+              onclick=" updateproduct('${user.uid}');"
+              id="save_btn"
+              class='w3-button w3-yellow'
+            >
+            Submit
+          </button>
+     
+        </form>
+      </div>
+     </div>
+    </div></div>
+    </div>
+  </div>
+  <!-- return product -->
+
+
+
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+  <!--  -->
+
+  
+<!--  -->
+<div class="maintable">
+  <label style="padding-left: 10px" class=" headlinetable1"> OUT TABLE:</label>
+<select id="data" class=" dropdown1">
+    <option value="">--select-- </option>
+    <option value="employeename" name="name"> Employeename</option>
+    <option value="department" name="name"> Department</option>
+    
+    
+    <option value="quantityout"  id = "quantityout" name="quantity"> Stock Out</option>
+
+    
+    <option value="date"  id="date" name="date">Date</option>
+
+    
+  
+  </select> 
+  <input type="text" name="Searchval" id="Searchme"  onkeyup="search()" class="searchTerm" placeholder="Search Here..."
+  required>
+  
+  <button  class="csv" onclick="OUt_table_CSV('Outtable');"> Download TO CSV</button>
+  <div  id="showUsers" class="OUTTable"></div></div>
+  <label class=" headlinetable" style="padding-left: 110px" > Return Product Table :</label> 
+
+     <select id="ReturntableSearch"  class=" dropdown2">
+    <option value="">--select-- </option>
+    <option value="CustomerName" name="name" id="name"> Employeename</option>
+    <option value="ReturnDepartment" name="name"> Department</option>
+    <!-- <option value="ReturnDepartment" name="name"> Date</option> -->
+    <!-- <option value="ReturnDepartment" name="name"> Stock IN</option> -->
+    
+    
+    <option value="QuantityIN"  id = "StockIN" name="quantity"> Stock IN</option>
+    
+    <option value="datealloted"  id="date" name="date">Date</option>
+
+    
+  
+  </select> 
+  <input type="text" name="Searchval" id="Searchreturntable"  class ="searchTerm" onkeyup="returntable_search()" class="searchTerm" placeholder="Search Here..."
+  required>
+  <button   class="csv2" onclick="download_table_as_csv('returnTable');"    > Download TO CSV  </button>
+  <div class="maintableReturn" id="">
+  <!-- <label style="padding-left: 80px"> Return table</label> -->
+  <div class="ReturndataTable" id="ShowReturnUsers"></div>
+</div>
+
+</div>
+    
+  
+  </div>
+
+  
+</body>
+<script src="script.js" defer></script>
+
+</html>

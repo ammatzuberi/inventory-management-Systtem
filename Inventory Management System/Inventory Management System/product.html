@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management System</title>  
+  <script src="main.js" defer></script>
+  <!-- <script src="script.js"></script> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+  <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" /> -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/> -->
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+ 
+ 
+    
+  
+</head>
+
+<body>
+  
+  
+  <div class="topnav">
+
+    <ul>
+      <li> 
+        <a class="imgnav" href="product.html">
+          <img  class ="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7QAhyNE46cH3I4H3rFpA7-ZpRaoXNUznNXU2NI8IVjA&s" title="Home" >
+          
+        </a>
+      </li>
+      <li><p    id="showcard" class= "navbarpages"href="#news">ADD PRODUCTS</p></li>
+      <li><p    onclick="  quantity_filter();" class= "navbarpages" href="#contact">LOW STOCK PRODUCTS</p></li>
+      <li><p    onclick="  outofStock();" class= "navbarpages" href="#contact">STOCK OUT PRODUCTS</p></li>
+
+      <li> <div class="box"> <i >
+        <select id="data" class=" dropdown">
+          <option value="">--select--  </option>
+          <option value="name" name="name" id="name"> Name</option>
+          <option value="price"  name="price">Price </option>
+          
+          <option value="quantity" id="totalstock" name="quantity">Total Stock</option>
+          <option value="manufacturer" name="manufacturer">Manufacturer</option>
+          <option value="date"  id="date" name="date">Date</option>
+        </select>
+           </i>
+    
+      <input type="text"  name="Searchval" id="Searchme"   onkeyup="search()" placeholder="Search..">
+        
+      
+    </div>
+  </li>
+  <li><a   id="showcard" class= "navbarpages" href="product.html" >Show All Products</a></li>
+  <li><p   style="float: right;"  onclick="  Logout();" class= "logoutbtn" href="#contact">Logout</p></li>
+
+  
+  <!-- <li  class= "navbarpages" style="float:right"><a class="active" href="#about">About</a></li> -->
+  
+  
+</div>
+ 
+   
+  </ul>
+
+  
+  <div class=" align_toggle">
+
+
+      
+      <!-- <i   style="font-size:36px;color: skyblue;margin-right: 10px;"  id="CARD"  class="fa-solid fa-table" ></i> -->
+      
+
+
+      
+      <!-- <i class="fa-solid fa-credit-card"  id="TABLE"style="font-size:36px; color: green;margin-right: 10px;" ></i> -->
+
+    
+  </div>
+
+  <h3  class="welcome">Welcome:   <script >document.write(localStorage.getItem('name'));</script> </h3>
+ 
+
+  <!-- <a href='productDetail.html'>VIEW Product</a> -->
+
+    
+    <!-- <label class="switch"> -->
+      <!-- <input type="checkbox" id="myCheckbox" onchange="toggleCheck()" checked> -->
+   
+      <!-- <span class="slider round"> </span> -->
+   
+    <!-- </label> -->
+
+ 
+
+
+
+  <div class="dropdownlist">
+
+
+    <div class="search" id="search">
+
+
+
+
+    </div>
+  </div>
+
+
+  <div>
+
+  </div>
+
+
+  <div id="cards" class="card_wrapper"></div>
+
+
+  </div>
+ 
+
+ 
+
+
+
+
+ 
+      
+</div>
+
+<div class="bg-model">
+
+
+  <div class="adddata">
+    <div class="close " >+ </div>
+
+    <div class="ADD_PRoduct">
+
+      <div class="card-header">
+        <h4 class= "editheader" >ADD PRODUCT</h4> 
+      </div>
+      
+      <div class="card-body">
+        <div class="form-group">
+          <label for=""  class="label" >Product Name </label>
+          <input type="text" class="form-control" id="Addname" placeholder="Enter name" required>
+
+
+        </div>
+        <div class="form-group">
+          <label for="" class="label">Summary</label>
+          <input type="text" name="" class="form-control" placeholder="Enter Summary" id="AddSummary" required>
+
+        </div>   <div class="form-group">
+          <label for="" class="label">Area</label>
+          <input type="text" name="" class="form-control" placeholder="Enter Area" id="Addarea" required>
+
+        </div>  
+         <div class="form-group">
+          <label for="" class="label">TOTAL Stock</label>
+          <input type="number" name="" class="form-control" placeholder="Enter Quantity" id="Addquantity" required>
+
+
+     
+        <div class="form-group">
+          <label for="" class="label">Unit Cost</label>
+          <input type="text"  name="" class="form-control" placeholder="Enter Price" id="Addprice" required>
+
+          <div class="form-group">
+          </div>
+          <label for="" class="label">Manufacture</label>
+          <input type="text" name="" class="form-control" placeholder="Enter Manufacture" id="Addmanufacture"
+            required>
+
+        </div>
+        <div class="form-group">
+        </div>
+        <label for="" class="label"> Transaction Date</label>
+        <input type="date" id="AddDate"
+          required>
+
+      </div>
+      <div class="form-group">  
+        <label for="" class="label">Comments</label>
+        <input type="text" name="" class="form-control" placeholder="Add A Comments" id="AddComments" required>
+
+      </div>
+      <div class="form-group">
+        <label for="" class="label">Serial Number</label>
+        <input type="text" name="" class="form-control" placeholder="Enter Serial Number" id="Addserialnumber" required>
+
+      </div> 
+       <!-- <div class="form-group">
+        <label for="" class="label">Stock</label>
+        <input type="text" name="" class="form-control" placeholder="Enter Stock Same as Quantity" id="Addstock" required>
+
+      </div> -->
+
+
+        <!-- <div class="form-group"> -->
+<!--           
+          <form method="POST" action="http://localhost:5000/products/upload/" enctype="multipart/form-data"> -->
+                <!-- <input type="file" name="file" class="form-control" placeholder="Enter Image" id="Addimage"   onchange="imageUploaded()" required
+              accept="image/*" />
+            <input type="submit" placeholder="image" class="imagebtn"> -->
+          <!--  </form> -->
+             
+     <div class="form-group">
+
+                      <input type="file" class="label" onchange=" encodeImageFileAsURL(this);" name="" class="form-control" placeholder="Enter Image"
+                           id="image1"   required  > 
+                  
+               
+                            </div>
+
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <button class="btnsubmit"  class="label" id="Addsubmit" onclick="submitForm(); ">SAVE</button>
+
+      </div>
+
+      <!-- <div class="w-100">  
+                              <span id="message"  ></span>
+                          </div>
+                       -->
+
+    </div>
+  </div>
+</div>
+
+
+<div class="bg_model2"> 
+  
+  <div class="card-wrapper"> 
+  <div class="adddata2">
+    <div class="close_edit" >+ </div>
+    <div class="Edit_product">
+
+  
+  
+
+      <div class="card-header">
+        <h4 class="editheader">EDIT PRODUCT</h4>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label  class="label" for="">Product Name </label>
+          <input type="text" class="form=" id="Name" placeholder="Enter name" required>
+  
+  
+        </div>
+        <div class="form-group">
+          <label  class="label" for="">TOTAL Stock</label>
+          <h5  id="quantity" ></h5>
+          </div>
+          <div class="form-group">
+            <label for="" class="label">Summary</label>
+            <input type="text" name="" class="form-control" placeholder="Enter Summary" id="Summary" required>
+  
+          </div>   
+          <div class="form-group">
+            <label for="" class="label">Area</label>
+            <input type="text" name="" class="form-control" placeholder="Enter Area" id="area" required>
+  
+          </div>  
+  
+        </div>
+        <div class="form-group">
+          <label class="label" for="">Price</label>
+          <input type="number" name="" class="form=" placeholder="Enter Price" id="price" required>
+  
+          <div class="form-group">
+          </div>
+          <label class="label" for="">Manufacture</label>
+          <input type="text" name="" class="form=" placeholder="Enter Manufacture" id="manufacture" required>
+          
+        </div>
+        <div class="form-group">
+        </div>
+        <label for="" class="label"> Transaction Date</label>
+        <input type="date" id="Date"
+          required>
+
+      </div>
+      <div class="form-group">
+        <label for="" class="label">Comments</label>
+        <input type="text" name="" class="form-control" placeholder="Add A Comments" id="Comments" required>
+
+      </div>
+      <div class="form-group">
+        <label for="" class="label">Serial Number</label>
+        <input type="text" name="" class="form-control" placeholder="Enter Serial Number" id="serialnumber" required>
+
+      </div>
+        <div class="form-group">
+        </div>
+        <label class="label" for=""> Stock left</label>
+        <h5 id="stockedit" ></h5>
+          
+        
+    
+  
+      
+      <label class="label" for=""> Add  Stock </label>
+      <input type="text" name=""  class="form-control" placeholder="Enter Manufacture" id="newstock" required>
+        
+     
+  
+        
+            <input type="file"  class="form-image" onchange=" encodeImageFileAsURL(this);" name="" class="form=" placeholder="Enter Image"
+                 id="image"   required  > 
+        
+            
+            
+                <div class="mt-3">
+                  <button class="btnsubmit2" id="submit" onclick="submitForm(); ">SAVE</button>
+                   
+                </div>
+        </div>
+        </div>
+      </div>
+  
+  
+
+  
+    </div>
+  </div>
+</div>  
+   
+  </div>
+  </div>
+</div>
+</div>
+
+
+  <thead>
+    <table class="table">
+   
+  </thead>
+  
+
+  <tbody id="product"></body>
+
+ 
