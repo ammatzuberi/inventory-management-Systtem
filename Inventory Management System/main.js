@@ -548,6 +548,9 @@ function quantity_filter() {
 
 
 
+
+
+
 function search() {
 
     // card();
@@ -558,28 +561,23 @@ function search() {
     var formtable = " ";
     var x = document.getElementById("Searchme").value;
     var y = document.getElementById("data").value;
-    
+    // var z= document.getElementById('totalstock').value;
+    // if( y == "quantity"){
+    //     newObj= userdata.filter(item => item[y]==item.x)
+    // }
+    // else{
+        newObj = userdata.filter(item => item[y].toUpperCase().toString().includes(x.toUpperCase().toString()));
+
+    // }SS
+    console.log(newObj);
     // var namesearch= document.getElementById('name').value;
-    console.log(data)
+ 
     // if (x == "") {
     //     alert("Please Enter Data In Search ");
     //     return false;
     // }
 
-
-    // console.log(userdata);
-    newObj = userdata.filter(item => item[y].toString()==[x]);
-
-
-
-
-
-    console.log(newObj);
-
-
-
-
-
+  // console.log(userdata);
     formtable +=
 
         `   
@@ -591,9 +589,14 @@ function search() {
     <th>Price</th>
     <th>Manufacture</th>
     <th>Date</th>
+    <th>Area</th>
+    <th>Serial Number</th>
+    <th>Comments</th>
+    <th>Summary</th>
  
-    <th>Delete</th>
-    <th id="edit">Edit</th>
+
+
+    <th>Action</th>
     </tr>`
     for (z = 0; z < newObj.length; z++) {
         formtable += `
@@ -606,11 +609,14 @@ function search() {
         <td style=color:${newObj[z].price < 200 ? "red" : "000"}> ${newObj[z].price}</td>
         <td> ${newObj[z].manufacturer}</td>
         <td> ${newObj[z].date}</td>
-    
-            
-        <td><button class='w3-button w3-red' onclick='deleteproduct("${newObj[z].uid}")'>Delete</button></td>
-        <td><button class='w3-button w3-yellow' onclick='editDataCall("${newObj[z].uid}")'>EDIT</button></td>
-        </tr>`
+        <td >${userdata[z].area}</td>
+        <td >${userdata[z].serial}</td>
+        <td >${userdata[z].comment}</td>
+        <td >${userdata[z].summary}</td>   
+    <td> 
+        <i class="fa-solid fa-trash" onclick='deleteproduct("${userdata[z].uid}")'></i>
+        <i class="fa-solid fa-pen" onclick='editDataCall("${userdata[z].uid}")'></i>   </td>    
+         </tr>`
 
 
 
@@ -620,74 +626,6 @@ function search() {
 
 
 // 
-
-var newObj
-
-    // var formtable = document.getElementById("product");
-    var formtable = " ";
-    var x = document.getElementById("Searchme").value;
-    var y = document.getElementById("data").value;
-    
-    // var namesearch= document.getElementById('name').value;
-    console.log(data)
-    // if (x == "") {
-    //     alert("Please Enter Data In Search ");
-    //     return false;
-    // }
-    
-
-    // console.log(userdata);
-    newObj = userdata.filter(item => item[y].toUpperCase().toString().includes(x.toUpperCase().toString()));
-
-
-
-
-
-    console.log(newObj);
-
-
-
-
-
-    formtable +=
-
-        `   
-    <table class="table">
-    <tr>
-    <th> Product Name</th>
-    <th>Image</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Manufacture</th>
-    <th>Date</th>
- 
-    <th>Delete</th>
-    <th id="edit">Edit</th>
-    </tr>`
-    for (z = 0; z < newObj.length; z++) {
-        formtable += `
-
-      <tr class="tabledata"> 
-        <td >${newObj[z].name}</td>
-        
-        <td> <img class="image"   onclick="window.location='productDetail.html' "src="${newObj[z].image}" > </td>
-        <td style=color:${newObj[z].quantity < 20 ? "red" : "000"}> ${newObj[z].quantity}</td>
-        <td style=color:${newObj[z].price < 200 ? "red" : "000"}> ${newObj[z].price}</td>
-        <td> ${newObj[z].manufacturer}</td>
-        <td> ${newObj[z].date}</td>
-    
-            
-        <td><button class='w3-button w3-red' onclick='deleteproduct("${newObj[z].uid}")'>Delete</button></td>
-        <td><button class='w3-button w3-yellow' onclick='editDataCall("${newObj[z].uid}")'>EDIT</button></td>
-        </tr>`
-
-
-
-
-    }
-    document.getElementById("product").innerHTML = formtable;
-
-
 
 
 
@@ -701,7 +639,7 @@ function addproduct() {
     const quantityinput = document.getElementById('Addquantity');
     const priceinput = document.getElementById('Addprice');
     const manufacturerinput = document.getElementById('Addmanufacture');
-    const dateinput = document.getElementById('ADDDate');
+    const dateinput = document.getElementById('AddDate');
     const Commentsinput = document.getElementById('AddComments');
     const serialnumberinput = document.getElementById('Addserialnumber');
     const Summaryinput = document.getElementById('AddSummary');
@@ -721,7 +659,7 @@ function addproduct() {
         price: priceinput.value.trim(),
         manufacturer: manufacturerinput.value.trim(),
         image: imageinput.trim(),
-        date: dateinput.value,
+        date: dateinput.value.trim(),
         summary: Summaryinput.value.trim(),
         comment: Commentsinput.value.trim(),
         area: areainput.value.trim(),
