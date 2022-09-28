@@ -67,12 +67,7 @@ var url = "http://localhost:5000/products/"
 
 
 
-function nonedisplay(x){
-x.style.display.block='none';
 
-
-
-}
 
 function productshow() {
     // toggleCheck();
@@ -113,10 +108,7 @@ function productshow() {
             response.forEach((user) => {
 
 
-                if (response.stock<=0 ){
-                    nonedisplay();
-
-                }
+              
                 userdata = [...response];
                 console.log(userdata)
 
@@ -129,7 +121,7 @@ function productshow() {
                 
                 
                 if( user.stock==0){
-                         document.getElementById('product').style.display='none';
+                        //  document.getElementById('product').style.display='none';
                 productdata ==
                 
                 
@@ -223,7 +215,6 @@ function productshow() {
 
 
 }
-
 // const setGuid = (uid) => {   
 //     localStorage.setItem('ID', JSON.stringify(uid));;
 // }
@@ -355,6 +346,61 @@ productshow();
 
 // }
 
+function show_all(){
+ show_allproducts ="";
+
+show_allproducts =`
+<table class="table>
+<table class="table">
+<tr>
+<th> Product Name
+<th>    Image</th>
+<th>Total Stock</th>
+<th>Price</th>
+<th>Manufacture</th>
+<th>Stock Left</th>
+<th>Date</th>
+<th>Area</th>
+<th>Serial Number</th>
+<th>Comments</th>
+<th>Summary</th>
+
+
+
+<th>Action</th>
+</tr>
+
+</table>`
+for(z=0;z<userdata.length;z++){
+show_allproducts +=
+
+
+
+            `<tr   class="tralign" onclick="setGuid('${userdata[z].uid}')"  id="myTable">
+        <td  style=color:${userdata[z].stock < 20 ? "red" : "#000"} > ${userdata[z].name} </td>
+        <td>     <img class ="image"  onclick="window.location='productDetail.html' " src="${userdata[z].image}"></td>
+        <td > ${userdata[z].quantity} </td>
+        <td > ${userdata[z].price} </td>
+        <td  > ${userdata[z].manufacturer} </td>
+        <td  > ${userdata[z].stock} </td>
+        <td >${userdata[z].date}</td>
+        <td >${userdata[z].area}</td>
+        <td >${userdata[z].serial}</td>
+        <td >${userdata[z].comment}</td>
+        <td >${userdata[z].summary}</td>
+
+        <td>
+        <i class="fa-solid fa-trash" onclick='deleteproduct("${userdata[z].uid}")'></i>
+        <i class="fa-solid fa-pen" onclick='editDataCall("${userdata[z].uid}")'>
+        </i>
+       
+        </td>
+        </tr>`
+        document.getElementById("product").innerHTML= show_allproducts;
+
+    }
+}
+ 
 
 
 function outofStock(){
@@ -382,6 +428,9 @@ QDATA =
 
 <th>Action</th>
 </tr>`
+
+
+
 
 
 
@@ -550,7 +599,6 @@ function quantity_filter() {
 
 
 
-
 function search() {
 
     // card();
@@ -559,6 +607,11 @@ function search() {
 
     // var formtable = document.getElementById("product");
     var formtable = " ";
+
+
+
+
+
     var x = document.getElementById("Searchme").value;
     var y = document.getElementById("data").value;
     // var z= document.getElementById('totalstock').value;
@@ -566,7 +619,19 @@ function search() {
     //     newObj= userdata.filter(item => item[y]==item.x)
     // }
     // else{
-        newObj = userdata.filter(item => item[y].toUpperCase().toString().includes(x.toUpperCase().toString()));
+    
+newObj = userdata.filter(item => item[y].toString()
+.includes(x.toUpperCase().toString()))
+        
+
+
+
+
+
+
+            
+          
+      
 
     // }SS
     console.log(newObj);
@@ -578,27 +643,31 @@ function search() {
     // }
 
   // console.log(userdata);
-    formtable +=
+
+    formtable+=
 
         `   
-    <table class="table">
-    <tr>
-    <th> Product Name</th>
-    <th>Image</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Manufacture</th>
-    <th>Date</th>
-    <th>Area</th>
-    <th>Serial Number</th>
-    <th>Comments</th>
-    <th>Summary</th>
- 
+        <table class="table">
+        <tr>
+        <th> Product Name
+        <th>    Image</th>
+        <th>Total Stock</th>
+        <th>Price</th>
+        <th>Manufacture</th>
+        <th>Stock Left</th>
+        <th>Date</th>
+        <th>Area</th>
+        <th>Serial Number</th>
+        <th>Comments</th>
+        <th>Summary</th>
+     
+    
+    
+        <th>Action</th>
+        </tr>`
 
-
-    <th>Action</th>
-    </tr>`
     for (z = 0; z < newObj.length; z++) {
+        
         formtable += `
 
       <tr class="tabledata"> 
@@ -608,6 +677,7 @@ function search() {
         <td style=color:${newObj[z].quantity < 20 ? "red" : "000"}> ${newObj[z].quantity}</td>
         <td style=color:${newObj[z].price < 200 ? "red" : "000"}> ${newObj[z].price}</td>
         <td> ${newObj[z].manufacturer}</td>
+        <td  > ${userdata[z].stock} </td>
         <td> ${newObj[z].date}</td>
         <td >${userdata[z].area}</td>
         <td >${userdata[z].serial}</td>
@@ -622,7 +692,13 @@ function search() {
 
 
     }
+
     document.getElementById("product").innerHTML = formtable;
+
+
+
+    
+
 
 
 // 
@@ -796,7 +872,7 @@ function setFormData(name, quantity, price, stock, area) {
     
     document.getElementById("Name").value = name;
     document.getElementById("quantity").innerHTML = quantity;
-    document.getElementById("price").value = price;
+    // document.getElementById("price").value = price;
     // document.getElementById('area').value=area
     document.getElementById("stockedit").innerHTML= stock
     // document.getElementById('image').files=image
@@ -822,17 +898,14 @@ if (name_logout == '') {
 }
 
 function Logout() {
-    localStorage.removeItem('name')
-    localStorage.removeItem('email')
+
 
     if (confirm('Are Your Sure Logout?')) {
         window.location.href = "login.html"
+        localStorage.removeItem('name')
+        localStorage.removeItem('email')
     }
-    else{
-        window.location.href="product.html"
-
-    }
-
+  
 
 }
 

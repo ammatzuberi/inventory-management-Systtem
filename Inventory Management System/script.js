@@ -105,7 +105,9 @@ function editdata(name, uid, stock) {
   document.getElementById("productnameReturn").innerHTML = name;
   document.getElementById("productid").innerHTML = uid;
   document.getElementById("productidReturn").innerHTML = uid;
-  document.getElementById("stockleft").innerHTML = stock;
+  // document.getElementById("stockleft").innerHTML = stock;
+
+  
   // document.getElementById('stockleft').innerHTML=stock
 }
 
@@ -117,7 +119,7 @@ function saveData() {
   // date=  new Date().toISOString().slice(0, 10);
   date = document.getElementById("outDate").value;
   uid = document.getElementById("productid").innerHTML;
-  stockleft = document.getElementById("stockleft").innerHTML;
+  // stockleft = document.getElementById("stockleft").innerHTML;
   department = document.getElementById("department").value;
   console.log(date);
 
@@ -162,20 +164,41 @@ function returnstock() {
         (parseInt(Detail_product.damagedstock) || 0) +
         parseInt(document.getElementById("Returnquantity_in").value.trim())
       ).toString(),
-    };
-  } else {
+    }
+  }
+   else {
     var item = {
       stock: (
         parseInt(Detail_product.stock) +
         parseInt(document.getElementById("Returnquantity_in").value.trim())
       ).toString(),
-      quantity: (
-        parseInt(Detail_product.quantity) +
-        parseInt(document.getElementById("Returnquantity_in").value.trim())
-      ).toString(),
+      // quantity: (
+      //   parseInt(Detail_product.quantity) +
+      //   parseInt(document.getElementById("Returnquantity_in").value.trim())
+      // ).toString(),
+   
     };
+  };
+  var valid ={
+    quantity:document.getElementById("Returnquantity_in").value,
+    name:document.getElementById("ReturnName").value,
+    department: document.getElementById('returnDepartmanet').value
   }
+ if(valid.quantity==''){
+  alert("Please Enter Quantity IN Field")
 
+ }
+ else if(valid.name=='')
+ {
+  alert("please enter name ")
+ }
+
+
+  
+
+                           
+ 
+else{
   fetch(url + newuid, {
     method: "PATCH",
     headers: {
@@ -190,6 +213,9 @@ function returnstock() {
   userinput();
   return false;
 }
+}
+
+
 
 function updateproduct() {
   document.querySelector(".bg-model").style.display = "none";
@@ -830,12 +856,12 @@ function OUt_table_CSV(table_id, separator = ",") {
   // confirm("Click ok to Download ");
 }
 function Logout() {
-  localStorage.removeItem('name')
-  localStorage.removeItem('email')
+
 
   if (confirm('Are Your Sure Logout?')) {
       window.location.href = "login.html"
+      localStorage.removeItem('name')
+      localStorage.removeItem('email')
   }
-
 
 }

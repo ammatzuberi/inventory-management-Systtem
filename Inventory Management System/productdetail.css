@@ -334,14 +334,16 @@ body {
 }
 
 .topnav a {
-  margin-top: -7px;
+  /* margin-top: -7px; */
     FONT-VARIANT: JIS04;
     FONT-VARIANT: JIS04;
     float: left;
     display: block;
     color: black;
+    margin-left: 10px;
     /* text-align: center; */
-    padding: 14px 16px;
+    /* padding: 10px 12px;
+  
     text-decoration: none;
     /* /* font-size: 17px; */
 }
@@ -367,25 +369,25 @@ body {
 }
 .topnav .logoutbtn{
   right: 0;
-  margin-left: 700px; 
-  margin-top: 10px; 
-   margin-bottom: 20px; 
- cursor: pointer;
-  background-color: #d24026; 
-   height: 40px; 
-   border: none;
+  margin-left: 700px;
+  /* margin-top: 10px; */
+  margin-bottom: 20px;
+  cursor: pointer;
+  background-color: #d24026;
+  height: 40px;
+  border: none;
   border-radius: 6px;
-  font-size: 20px; 
+  font-size: 20px;
   text-align: center;
   padding: 0 16px;
-  width: 100px;
-  color: #fff; 
+  /* width: 100px; */
+  color: #fff;
   float: right;
   padding: 6px;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   margin-right: 16px;
   border: none;
-  font-size: 17px
+  font-size: 17px;
 }
 
 @media screen and (max-width: 600px) {
@@ -421,13 +423,13 @@ body {
   align-items: center;
   justify-content: center;
   display: none;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   
 
 }
 .adddata{
-  margin-top: 90px;
-  background-color: rgb(0 0 0 / 25%);
+  margin-top: 20px;
+  background-color: rgb(255 255 255 / 51%);
   position: relative;
   font-size: 16px;
   opacity: 1;
@@ -438,6 +440,10 @@ body {
   /* border-radius: 40px; */
   backdrop-filter: blur(5px);
   margin-left: 500px;
+}
+label{
+  font-weight: 900;
+  font-size: larger;
 }
 
 
@@ -453,13 +459,13 @@ cursor: pointer;
 .formproduct{
 
   /* background: linear-gradient(to right, #0d6efd 0%,#31708f 100%); */
-
+  background-color: cadetblue;
   height: 33px;
   color: #fff;
   /* margin-left:700px; */
-  margin-bottom: 10px;
+  /* margin-bottom: 10px;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; */
   cursor: pointer;
   border: none;
   padding: 5px;
@@ -487,8 +493,8 @@ cursor: pointer;
 
 }
 .Returndataform{
-  margin-top: 90px;
-  background-color: rgb(0 0 0 / 25%);
+  margin-top: 5px;
+  background-color: rgb(255 255 255 / 60%);
   position: relative;
   font-size: 16px;
   opacity: 1;
@@ -496,7 +502,7 @@ cursor: pointer;
   padding: 8px 16px;
   width: 500px;
   min-height: 44px;
-  /* border-radius: 40px; */
+  border-radius: 40px;
   backdrop-filter: blur(5px);
   margin-left: 500px
 }
@@ -537,7 +543,7 @@ margin-right: 20px;
 }
 
 .csv{
-  margin-left: 20px;
+  /* margin-left: 20px; */
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -601,12 +607,13 @@ margin-right: 30px;
   height: 33px;
   color: #fff;
   /* margin-left:700px; */
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  /* margin-bottom: 10px; */
+  /* margin-top: 10px; */
+  /* margin-bottom: 20px; */
   cursor: pointer;
   border: none;
   padding: 5px;
+  background-color: cadetblue;
 
 }
 .dropdown2{
@@ -623,7 +630,13 @@ margin-right: 30px;
   padding: 0 2px;
   height: 33px;
   box-shadow: none;
+ 
 
+}
+.Returnsave{
+background-color: #04AA6D;
+border: none;
+padding: 10px;
 }
 .searchTerm{
   /* border-left: 0; */
@@ -632,7 +645,7 @@ margin-right: 30px;
     height: 33px;
     /* box-shadow: none; */
         /* float: right; */
-        padding: 6px;
+        /* padding: 6px; */
         margin-top: 8px;
         /* margin-right: 16px; */
         /* border: none; */
@@ -648,7 +661,7 @@ margin-right: 30px;
 } 
 
 .headlinetable1{
-  margin-right:350px;
+  margin-right:200px;
   font-size: 2.5rem;
   color:rgb(7, 86, 198);
   font-family:sans-serif;
@@ -693,7 +706,7 @@ li a:hover:not(.active) {
 }
 
 .backbtn{
-  padding: 15px;
+  padding: 10px;
   background-color: #04AA6D;
 color: #fff;
 border: none;

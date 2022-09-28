@@ -1,4 +1,4 @@
-
+stock
 
 
 
@@ -87,6 +87,18 @@ width: 45%;
     box-shadow: none;
     border:none;
 
+}
+.form-control_editform{
+  /* height: 33px; */
+  width: 45%;
+      margin-bottom: 5px;
+      background: #fff;
+      color: #000;
+      font-size: 16px;
+      border-radius: 5px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      border:none;
 }
 
 
@@ -329,7 +341,7 @@ h5{
 
 .adddata2{
   margin-left: 500px;
-  margin-top: 19px;
+  margin-top: 10px;
   border-radius: 30px;
 
 
@@ -872,23 +884,24 @@ body {
   font-size: 17px;
 }
 .topnav .logoutbtn{
-  margin-left: 100px;
-  margin-bottom: 10px;
-  margin-top: 10px; 
-   margin-bottom: 20px; 
- cursor: pointer;
-  background-color: #d24026; 
-   height: 40px; 
-   border: none;
+  right: 0;
+  margin-left: 50px;
+  /* margin-top: 10px; */
+  margin-bottom: 20px;
+  cursor: pointer;
+  background-color: #d24026;
+  height: 40px;
+  border: none;
   border-radius: 6px;
-  font-size: 20px; 
+  font-size: 20px;
+  text-align: center;
   padding: 0 16px;
-  width: 100px;
-  color: #fff; 
+  /* width: 100px; */
+  color: #fff;
   float: right;
-  padding: 7px;
-  margin-top: 8px;
-  /* margin-right: 16px; */
+  padding: 6px;
+  /* margin-top: 8px; */
+  margin-right: 16px;
   border: none;
   font-size: 17px;
 }
@@ -927,14 +940,14 @@ h1{
 .box{
   width: fit-content;
   margin-top: 6px;
-  height: 50px;
+  height: 31px;
   background-color: white;
-  border-radius: 30px;
-  display: flex;  
+  /* border-radius: 30px; */
+  display: flex;
   align-items: center;
   padding: 20px;
   /* width: 380px; */
-  /* max-width: 200px; */
+  /* max-width: 200px;*/
   
 
 }
@@ -971,12 +984,39 @@ li {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  background-color: cadetblue;
+}
+.navbarpagesbutton{
+  margin-top: 10px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 7px 12px;
+  text-decoration: none;
+  background-color: cadetblue;
+  cursor: pointer;
+  border: none;
 }
 
 li a:hover:not(.active) {
   background-color: #111;
 }
-
+li button:hover:not(.active) {
+  background-color: cadetblue;
+  color: white;
+}
 .active {
   background-color: #04AA6D;
+}
+.editstock{
+  height: 33px;
+  width: 45%;
+  margin-bottom: 5px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
 }
