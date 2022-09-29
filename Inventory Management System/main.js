@@ -87,7 +87,7 @@ function productshow() {
             productdata +=
                 `   
             <table class="table" >
-            <tr>
+            <tr >
             <th> Product Name
             <th>    Image</th>
             <th>Total Stock</th>
@@ -102,7 +102,7 @@ function productshow() {
          
    
      
-            <th>Action</th>
+            <th style= width:20%;>Action</th>
        
             </tr>`
             response.forEach((user) => {
@@ -125,14 +125,14 @@ function productshow() {
                 productdata ==
                 
                 
-                `<tr   class="tralign" onclick="setGuid('${user.uid}')"  id="myTable" >
+                `<tr   class=" tralign " onclick="setGuid('${user.uid}')"  id="myTable" >
                 <a href="">
                 <td     style=color:${user.stock < 20 ? "red" : "#000"}  >  ${user.name}
                </td> 
                 <td>  
                 <img   onclick="window.location='productDetail.html' " class ="image" src="${user.image}"/ >  </td> 
                 <td > ${user.quantity} </td>
-                <td > ${user.price} </td>
+                <td >₹ ${user.price} </td>
                 <td  > ${user.manufacturer} </td>
                 <td  > ${user.stock} </td>
            
@@ -164,7 +164,7 @@ function productshow() {
                 <td>  
                 <img   onclick="window.location='productDetail.html' " class ="image" src="${user.image}"/ >  </td> 
                 <td > ${user.quantity} </td>
-                <td > ${user.price} </td>
+                <td >₹${user.price} </td>
                 <td  > ${user.manufacturer} </td>
                 <td  > ${user.stock} </td>
            
@@ -447,7 +447,7 @@ for (z = 0; z < userdata.length; z++) {
         <td  style=color:${userdata[z].stock < 20 ? "red" : "#000"} > ${userdata[z].name} </td>
         <td>     <img class ="image"  onclick="window.location='productDetail.html' " src="${userdata[z].image}"></td>
         <td > ${userdata[z].quantity} </td>
-        <td > ${userdata[z].price} </td>
+        <td > ₹${userdata[z].price} </td>
         <td  > ${userdata[z].manufacturer} </td>
         <td  > ${userdata[z].stock} </td>
         <td >${userdata[z].date}</td>
@@ -539,7 +539,7 @@ function quantity_filter() {
             <td  style=color:${userdata[z].stock < 20 ? "red" : "#000"} > ${userdata[z].name} </td>
             <td>     <img class ="image"  onclick="window.location='productDetail.html' " src="${userdata[z].image}"></td>
             <td > ${userdata[z].quantity} </td>
-            <td > ${userdata[z].price} </td>
+            <td >₹${userdata[z].price} </td>
             <td  > ${userdata[z].manufacturer} </td>
             <td  > ${userdata[z].stock} </td>
             <td >${userdata[z].date}</td>
@@ -608,33 +608,52 @@ function search() {
     // var formtable = document.getElementById("product");
     var formtable = " ";
 
-
-
-
-
     var x = document.getElementById("Searchme").value;
     var y = document.getElementById("data").value;
-    // var z= document.getElementById('totalstock').value;
-    // if( y == "quantity"){
-    //     newObj= userdata.filter(item => item[y]==item.x)
-    // }
-    // else{
-    
-newObj = userdata.filter(item => item[y].toString()
-.includes(x.toUpperCase().toString()))
+
+    var noResult=document.getElementById('not_found')
+    var tableheading= document.querySelector('.table');
+    // noResult.innerHTML="DATA NOT FOUND";
+   
+
+    //  let searchshow= document.getElementById('product');
+
+   
+// if(y==''){
+//    alert("please select the field you wanted to search")
+   
+// }
+// if(x==[y]){
+
+//     noResult.style.display='none';  
+// }
+
+// else{
+ 
+//     noResult.style.display='';              
+   
+// }    
+
+     
+     newObj = userdata.filter(item =>
+            item[y].toString().toLowerCase()
+    .includes(x.toString().toLowerCase()) )
+    console.log(newObj);
+
+    if(newObj.length)
+        {
+        
+            noResult.style.display='none';   
+            tableheading.style.display='block'; 
+        }
+        else{
+          
+            noResult.style.display='';  
+            tableheading.style.display='none';
+
+        }
         
 
-
-
-
-
-
-            
-          
-      
-
-    // }SS
-    console.log(newObj);
     // var namesearch= document.getElementById('name').value;
  
     // if (x == "") {
@@ -644,7 +663,7 @@ newObj = userdata.filter(item => item[y].toString()
 
   // console.log(userdata);
 
-    formtable+=
+    formtable=
 
         `   
         <table class="table">
@@ -664,18 +683,28 @@ newObj = userdata.filter(item => item[y].toString()
     
     
         <th>Action</th>
-        </tr>`
+        </tr>
+   
+      
+        
+        `
+     
 
     for (z = 0; z < newObj.length; z++) {
         
         formtable += `
+    
 
       <tr class="tabledata"> 
+ 
+
+    
+  
         <td >${newObj[z].name}</td>
         
         <td> <img class="image"   onclick="window.location='productDetail.html' "src="${newObj[z].image}" > </td>
         <td style=color:${newObj[z].quantity < 20 ? "red" : "000"}> ${newObj[z].quantity}</td>
-        <td style=color:${newObj[z].price < 200 ? "red" : "000"}> ${newObj[z].price}</td>
+        <td >₹ ${newObj[z].price}</td>
         <td> ${newObj[z].manufacturer}</td>
         <td  > ${userdata[z].stock} </td>
         <td> ${newObj[z].date}</td>
@@ -694,6 +723,9 @@ newObj = userdata.filter(item => item[y].toString()
     }
 
     document.getElementById("product").innerHTML = formtable;
+   document.getElementById('not_found').innerHTML=" Sorry Product Not  Found"    ;
+
+    
 
 
 
@@ -702,6 +734,10 @@ newObj = userdata.filter(item => item[y].toString()
 
 
 // 
+
+
+
+
 
 
 
@@ -868,7 +904,7 @@ function updateproduct() {
         })
     return false;
 }
-function setFormData(name, quantity, price, stock, area) {
+function setFormData(name, quantity,  stock, area) {
     
     document.getElementById("Name").value = name;
     document.getElementById("quantity").innerHTML = quantity;
@@ -883,9 +919,6 @@ function setFormData(name, quantity, price, stock, area) {
 
 
 }
-
-
-
 
 
 
@@ -909,6 +942,44 @@ function Logout() {
 
 }
 
+//Table To excel
+function export_data(){
+	let data=document.querySelector('.table');
+	var fp=XLSX.utils.table_to_book(data,{sheet:'table'});
+	XLSX.write(fp,{
+		bookType:'xlsx',
+		type:'base64'
+	});
+	XLSX.writeFile(fp, 'Product.xlsx');
+}
+// paging js 
+
+const itemPerPage=10    ;
+let page=0;
+
+
+function pages(index){
+    const table= document.querySelector('.table');
+    const rows= table.tBodies[0].rows;
+    if(index<0){
+        page= 0;
+
+    }
+    else if(index>table.rows.length-itemPerPage){
+        page=rows.length/itemPerPage+1
+    }
+    else{
+        page=index;
+    }
+    for (let i = 0; i < rows.length; i++) {
+        if (i >= page && i < page + itemPerPage) {
+          rows[i].style.display = 'table-row';
+        }
+        else {
+          rows[i].style.display = 'none';    
+        }
+      }
+    }
 
 
 

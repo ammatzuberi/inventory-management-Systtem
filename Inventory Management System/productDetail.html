@@ -205,7 +205,7 @@
 
         <h3 >Total Stock:<span id="quantitycard"></span></h4>
           <h3 >Damaged Stock:<span id="DamageditemCard"></span></h4>
-          <h4  >Price ₹: <span id="Pricecard"></span></h4>
+          <h4  >Price : ₹ <span id="Pricecard"></span></h4>
           <h3 >Area :<span id="areacard"></span></h3>
                  <p >Manufacture: <span id="Manufacturecard"></span></p>
           <p >Serial No: <span id="Serialcard"></span></p>
@@ -239,7 +239,7 @@
           <!-- <div class="form-group"> -->
             <label for="name">Product Name :</label>
             <!-- <span id=" productname">
-
+              
 
             </span>
                -->
@@ -339,7 +339,7 @@
 <div class="maintable">
   <span style="padding-left: 10px" class=" headlinetable1"> PRODUCT OUT TABLE:</span>
 <select id="data" class=" dropdown1">
-    <option value="">--SELECT-- </option>
+    <!-- <option value="">--SELECT-- </option> -->
     <option value="employeename" name="name">  EMPLOYEE NAME</option>
     <option value="department" name="name"> DEPARTMENT</option>
     
@@ -360,7 +360,7 @@
   <span class=" headlinetable" style="padding-left: 93px" > RETURN PRODUCT TABLE :</span> 
 
      <select id="ReturntableSearch"  class=" dropdown2">
-    <option value="">--SELECT-- </option>
+
     <option value="CustomerName" name="name" id="name"> EMPLOYEE NAME</option>
     <option value="ReturnDepartment" name="name"> DEPARTMENT</option>
     <!-- <option value="ReturnDepartment" name="name"> Date</option> -->
@@ -378,6 +378,7 @@
   required>
   <button   class="csv2" onclick="download_table_as_csv('returnTable');"    > Download TO CSV  </button>
   <div class="maintableReturn" id="">
+    
   <!-- <label style="padding-left: 80px"> Return table</label> -->
   <div class="ReturndataTable" id="ShowReturnUsers"></div>
 </div>
@@ -386,8 +387,10 @@
     
   
   </div>
+  <span  class="searchresultcss" id="searchproductout"></span>
 
-  
+  <span class="searchresultcssRETURN" id="searchnotfound"></span>
+
 </body>
 <script src="script.js" defer></script>
 

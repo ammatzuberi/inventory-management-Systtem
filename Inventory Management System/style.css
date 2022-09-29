@@ -80,14 +80,15 @@ height: 33px;
 width: 45%;
     margin-bottom: 5px;
     background: #fff;
-    color: #000;
+    /* color: #000; */
     font-size: 16px;
     border-radius: 5px;
     -webkit-box-shadow: none;
     box-shadow: none;
-    border:none;
-
+    border: none;
 }
+
+
 .form-control_editform{
   /* height: 33px; */
   width: 45%;
@@ -310,13 +311,13 @@ h5{
 
 }
 .adddata{
-    margin-left: 500px;
-    margin-top: 100px;    
-    margin-top: 48px; 
+  margin-left: 451px;
+    
+    margin-top: 15px;
+    
+
      border-radius: 30px;
  
-
-   
     background-color: rgb(251 252 251);
 
     height: 550px;
@@ -395,9 +396,13 @@ cursor: pointer;
 	/* color: #fff; */
 }
 label{
-    font-weight: 800;
+    font-weight: 700;
 }
 
+.searchresult{
+  font-size: 2rem;
+  color: red;
+}
 
 /* signup form  */
 
@@ -537,7 +542,7 @@ label{
 
 .formbutton{
     background-color: #3a79de;
-    color: #ffffff;
+    color: #c45b5b;
     border-color: #1239ba;
     line-height: 40px;
     width: 100px;
@@ -726,7 +731,7 @@ body {
   background: linear-gradient(to right, #de48b5 0%,#0097ff 100%); 
   border-radius: 3px;
   margin-top: 10px;
-  color: #fff;
+  color: rgb(231, 16, 16);
   letter-spacing: 1px;
   font-family: 'Rubik', sans-serif;
 }
@@ -1020,3 +1025,4 @@ li button:hover:not(.active) {
   box-shadow: none;
   border: none;
 }
+/*  */

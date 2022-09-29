@@ -85,7 +85,7 @@ function showDataCard(
   serial,
   image,
   stock,
-  damagedstock
+  damagedstock=0
 ) {
   document.getElementById("Namecard").innerHTML = name;
   document.getElementById("quantitycard").innerHTML = quantity;
@@ -398,6 +398,7 @@ function returntable_search() {
 
   var dropdown_return = document.getElementById("ReturntableSearch").value;
   var search_return_table = document.getElementById("Searchreturntable").value;
+  var searchnotfound= document.getElementById('searchnotfound');
 
   returntable_records = returntable_records.filter((item) =>
     item[dropdown_return]
@@ -405,7 +406,14 @@ function returntable_search() {
       .toString()
       .includes(search_return_table.toUpperCase().toString())
   );
+if(returntable_records.length){
 
+searchnotfound.style.display='none'
+
+}
+else{
+  searchnotfound.style.display=""
+}
   drow_return_table = `<table class ="table" id="returnTable">
 <th> Product Name</th>
 <th  > Employee Name </th>
@@ -442,6 +450,7 @@ function returntable_search() {
 
   drow_return_table += `</table>`;
   table_Return.innerHTML = drow_return_table;
+  searchnotfound.innerHTML= "Search not Found"
 
   var StockIN = document.getElementById("StockIN").value;
   var search_return_table = document.getElementById("Searchreturntable").value;
@@ -503,6 +512,7 @@ function search() {
 
   var dropdown = document.getElementById("data").value;
   var search = document.getElementById("Searchme").value;
+  var searchresult= document.getElementById('searchproductout');
 
   user_records = user_records.filter((item) =>
     item[dropdown]
@@ -510,6 +520,13 @@ function search() {
       .toString()
       .includes(search.toUpperCase().toString())
   );
+  if(user_records.length){
+    searchresult.style.display="none";
+
+  }
+  else{
+    searchresult.style.display=" ";
+  }
   drawTable = `
   <table class="table " id="Outtable">
   <tr>
@@ -547,51 +564,8 @@ function search() {
   }
   drawTable += `</table>`;
   formcards.innerHTML = drawTable;
+  searchresult.innerHTML="Search Result Not Found ";
 
-  var stockout = document.getElementById("quantityout").value;
-  var search = document.getElementById("Searchme").value;
-  user_records = user_records.filter(
-    (item) => item[stockout].toUpperCase() == search.toUpperCase().toString()
-  );
-
-  // var drawTable = "";
-
-  drawTable = `
-  <table class="table " id="Outtable">
-  <tr>
-  
-  <th> PRoduct NAME</th>
-  <th>Employee Name </th>
-  <th>Stock Out  </th>  
-  <th>Department</th>
-
-  <th>Date </th>
-  
-      
-      </tr>`;
-
-  for (i = 0; i < user_records.length; i++) {
-    console.log(user_records);
-    if (dataid == user_records[i].uid) {
-      // console.log(user_records)
-      drawTable += `   
-              <tr class="tabledata"> 
-     
-              <td>${user_records[i].productname}</td>
-              <td>${user_records[i].employeename}</td>
-              <td >${user_records[i].quantityout}</td>
-              <td >${user_records[i].department}</td>
-              <td> ${user_records[i].date}</td>
-           
-             
-              </td>
-      
-            
-  
-                  </tr>`;
-    }
-  }
-;
   // return false;
 }
 
