@@ -993,7 +993,7 @@ function Logout() {
 
 //Table To excel
 function export_data(){
-	let data=document.querySelector('.table222');
+	let data=document.querySelector('.table');
 	var fp=XLSX.utils.table_to_book(data,{sheet:'All_Products'});
 	XLSX.write(fp,{
 		bookType:'xlsx',
