@@ -202,12 +202,9 @@ tr:hover {background-color: #ddd;}
 .table {  
     top: 0;
     margin-top:0px;
-    /* padding-left: 20px;
-    padding-right: 10px; */
-
-    /* margin-left: 1px;
-     */
-    /* margin-bottom: 100%; */
+    margin-left: 75px;
+    margin-right: 75px;
+    margin-bottom: 30px;
 
 }
 
@@ -468,7 +465,7 @@ label{
     gap: 2em; 
 }
 
-.container{
+/* .container{
 
     background: #c1bfd3; 
     padding: 2em;
@@ -485,7 +482,7 @@ label{
     -webkit-box-shadow: 0px 10px 34px -15px rgba(135, 2, 2, 0.24);
     -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
      box-shadow: 0px 10px 34px -15px rgba(144, 28, 28, 0.24);
-}
+} */
 
 .logo{
   margin-right: 80%;
@@ -654,10 +651,7 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
-.container {
-  display: flex;
-  height: 100vh;
-}
+
 
 .left {
   overflow: hidden;
@@ -1026,3 +1020,19 @@ li button:hover:not(.active) {
   border: none;
 }
 /*  */
+.xls{
+  margin-top: -42px;
+float: right;
+margin-right: 20px  ;
+}
+.Prev{
+  margin-top: 10px;
+margin-left: 50%;
+margin-bottom: 40px ;
+}
+.Next{
+  top: 0;
+  margin-top: 10px;
+margin-left: 20px;
+margin-bottom: 40px ;
+}

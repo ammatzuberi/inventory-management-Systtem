@@ -66,10 +66,47 @@ var globaluid;
 var url = "http://localhost:5000/products/"
 
 
+var userdata;
+
+const itemPerPage=5;
+let page=1;
 
 
+function pages(index){
 
+ 
+    const table= document.querySelector('.table');
+    const rows= table.tBodies[0].rows;
+    console.log(rows)
+    // alert(rows.length);
+
+    if(index<0){
+        page= 0;
+        // alert(1)
+    }
+    else if(index>table.rows.length-itemPerPage){
+        page=rows.length/itemPerPage+1
+        // alert(2)
+        
+    }
+    else{
+        // alert(3)
+        page=index;
+        console.log(page)
+    }
+    for (let i = 1; i < rows.length; i++) {
+        if (i >= page && i < page + itemPerPage) {
+          rows[i].style.display = 'table-row';
+        }
+        else {
+          rows[i].style.display = 'none';    
+        }
+      }
+    }
+
+   
 function productshow() {
+
     // toggleCheck();
     document.getElementById("cards").style.display = "none";
 
@@ -85,11 +122,13 @@ function productshow() {
             var formcard = "";
             var productdata = "";
             productdata +=
-                `   
-            <table class="table" >
-            <tr >
+                `  
+             
+            <table class="table">
+            <thread>
+            <tr>
             <th> Product Name
-            <th>    Image</th>
+            <th> Image</th>
             <th>Total Stock</th>
             <th>Price</th>
             <th>Manufacture</th>
@@ -102,9 +141,10 @@ function productshow() {
          
    
      
-            <th style= width:20%;>Action</th>
+            <th>Action</th>
        
-            </tr>`
+            </tr>
+            </thread>`
             response.forEach((user) => {
 
 
@@ -117,40 +157,46 @@ function productshow() {
                 // .catch(error=> console.error("unable to get the Products"))
                 
                 
-                
-                
-                
-                if( user.stock==0){
+             
+
+                    
+                    
+                    
+                    
+                    if( user.stock==0){
                         //  document.getElementById('product').style.display='none';
                 productdata ==
                 
                 
-                `<tr   class=" tralign " onclick="setGuid('${user.uid}')"  id="myTable" >
+                `
+                <tbody>
+                <tr   class=" tralign " onclick="setGuid('${user.uid}')"  id="myTable" >
                 <a href="">
                 <td     style=color:${user.stock < 20 ? "red" : "#000"}  >  ${user.name}
-               </td> 
+                </td> 
                 <td>  
                 <img   onclick="window.location='productDetail.html' " class ="image" src="${user.image}"/ >  </td> 
                 <td > ${user.quantity} </td>
                 <td >₹ ${user.price} </td>
                 <td  > ${user.manufacturer} </td>
                 <td  > ${user.stock} </td>
-           
+                
                 <td >${user.date}</td>
                 <td >${user.area}</td>
                 <td >${user.serial}</td>
                 <td >${user.comment}</td>
-                    
+                
                 <td>
-            <i class="fa-solid fa-trash" onclick='deleteproduct("${user.uid}")'></i>
-            <i class="fa-solid fa-pen" onclick='editDataCall("${user.uid}")'>
-            </i>
-           
-            </td>
+                <i class="fa-solid fa-trash" onclick='deleteproduct("${user.uid}")'></i>
+                <i class="fa-solid fa-pen" onclick='editDataCall("${user.uid}")'>
+                </i>
+                
+                </td>
                 
                 
-             
-                </tr>`
+                
+                </tr>
+                </tbody>`
             }
             else {
                 document.getElementById('product').style.display='';
@@ -160,32 +206,33 @@ function productshow() {
                 `<tr   class="tralign" onclick="setGuid('${user.uid}')" >
                 <a href="">
                 <td     style=color:${user.stock < 20 ? "red" : "#000"}  >  ${user.name}
-               </td> 
+                </td> 
                 <td>  
                 <img   onclick="window.location='productDetail.html' " class ="image" src="${user.image}"/ >  </td> 
                 <td > ${user.quantity} </td>
                 <td >₹${user.price} </td>
                 <td  > ${user.manufacturer} </td>
                 <td  > ${user.stock} </td>
-           
+                
                 <td >${user.date}</td>
                 <td >${user.area}</td>
                 <td >${user.serial}</td>
                 <td >${user.comment}</td>
                 <td >${user.summary}</td>
-            
-             
+                
+                
                 <td>
                 <i class="fa-solid fa-trash" onclick='deleteproduct("${user.uid}")'></i>
                 <i class="fa-solid fa-pen" onclick='editDataCall("${user.uid}")'>
                 </i>
-               
+                
                 </td>
                 </tr>`
             }   
-                formcard +=
-                
-                    ` <div class="card"  onclick="setGuid('${user.uid}')" >
+        
+            formcard +=
+            
+            ` <div class="card"  onclick="setGuid('${user.uid}')" >
              <div class="container">
              
              <img onclick="window.location='productDetail.html' " class ="cardimage" src="${user.image}">
@@ -206,13 +253,13 @@ function productshow() {
 
             });
 
-
             document.getElementById("product").innerHTML = productdata;
+            pages(0);
             // document.getElementById("cards").innerHTML = formcard;
 
-
+         
         })
-
+       
 
 }
 // const setGuid = (uid) => {   
@@ -347,11 +394,12 @@ productshow();
 // }
 
 function show_all(){
+
  show_allproducts ="";
 
 show_allproducts =`
-<table class="table>
-<table class="table">
+
+<table class="table2" id="showall">
 <tr>
 <th> Product Name
 <th>    Image</th>
@@ -369,8 +417,9 @@ show_allproducts =`
 
 <th>Action</th>
 </tr>
+</table>
 
-</table>`
+ `
 for(z=0;z<userdata.length;z++){
 show_allproducts +=
 
@@ -924,7 +973,7 @@ function setFormData(name, quantity,  stock, area) {
 
 let name_logout = localStorage.getItem('name') ? localStorage.getItem('name') : ''
 
-console.log(name_logout)
+// console.log(name_logout)
 if (name_logout == '') {
     alert("you need to login first ")
     window.location.href = "login.html"
@@ -944,8 +993,8 @@ function Logout() {
 
 //Table To excel
 function export_data(){
-	let data=document.querySelector('.table');
-	var fp=XLSX.utils.table_to_book(data,{sheet:'table'});
+	let data=document.querySelector('.table222');
+	var fp=XLSX.utils.table_to_book(data,{sheet:'All_Products'});
 	XLSX.write(fp,{
 		bookType:'xlsx',
 		type:'base64'
@@ -953,34 +1002,3 @@ function export_data(){
 	XLSX.writeFile(fp, 'Product.xlsx');
 }
 // paging js 
-
-const itemPerPage=10    ;
-let page=0;
-
-
-function pages(index){
-    const table= document.querySelector('.table');
-    const rows= table.tBodies[0].rows;
-    if(index<0){
-        page= 0;
-
-    }
-    else if(index>table.rows.length-itemPerPage){
-        page=rows.length/itemPerPage+1
-    }
-    else{
-        page=index;
-    }
-    for (let i = 0; i < rows.length; i++) {
-        if (i >= page && i < page + itemPerPage) {
-          rows[i].style.display = 'table-row';
-        }
-        else {
-          rows[i].style.display = 'none';    
-        }
-      }
-    }
-
-
-
-
