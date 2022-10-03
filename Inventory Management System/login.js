@@ -1,25 +1,81 @@
-let userName=localStorage.getItem('name')?localStorage.getItem('name'):''
-console.log(userName);
-if(userName!='')
-{
-  alert('Already Login ');
-  window.location.href="product.html";
-}
+// let userName=localStorage.getItem('name')?localStorage.getItem('name'):''
+// console.log(userName);
+// if(userName!='')
+// {
+//   alert('Already Login ');
+//   window.location.href="product.html";
+// }
+
+// const logindata="localhost://localhost//:5000/login/"
+// const logindata = "http://localhost:5000/login/";
+
+// var alldata;
+// function getlogindata(){
+
+//  fetch(logindata)
+//  .then(response=> response.json())
+//  .then(response=>{
+//     // console.log(response)
+//     response.forEach(user => {
+//         alldata = [...response];
+//         console.log(alldata)
+//     });
+   
+//  })
+//  alldata=[...response];
+
+    
+// }
+
+
 
 
 function NEWDATA() {
+    console.log(alldata)
+    const name =document.getElementById("loginname").value;
 
-    let name, password, email, Organisation;
-    name = document.getElementById("name").value;
+    const email =document.getElementById("loginemail").value;
+    const password= document.getElementById("loginpassword").value;
+    let Organisation= document.getElementById("loginOrganisation").value;
+    // let namedata= document.getElementById('namedata').value;
+// // console.log(namedata)
+// // namedata
 
 
-    Organisation = document.getElementById("Organisation").value;
-    email = document.getElementById("email").value;
-    password = document.getElementById("password").value;
+
+
+// const data={
+
+//     // Organisation:Organisationinput.value,
+//     name:nameinput,
+//     email:emailinput,
+//     password:passwordnput,
+//     Organisation:Organisationinput,
+   
+
+
+// };
+// console.log(data)
+// fetch(logindata,{
+//     method:"POST",
+//     headers: {
+//         "Content-Type": "application/json",
+//         "Access-Control-Allow-Origin": "*",
+//     },
+//     body:JSON.stringify(data)
+
+// })
+// .then(response=> response.json())
+// .then(response=>{
+//     console.log(response)
+// })
+
+
+
 
     let users = new Array();
-    users = JSON.parse(localStorage.getItem("logindata")) ? JSON.parse(localStorage.getItem("logindata")) : []
-    if (users.some((v) => { return v.email == email }
+    alldata = JSON.parse(localStorage.getItem("logindata")) ? JSON.parse(localStorage.getItem("logindata")) : []
+    if (alldata.some((v) => { return v.email == email }
     )) {
         alert(" User Already Found")
 
@@ -45,7 +101,7 @@ function NEWDATA() {
 
 }
 
-
+// }   
 
 
 
@@ -72,3 +128,4 @@ function login() {
         alert("login Fails....")
     }
 }
+// getlogindata();

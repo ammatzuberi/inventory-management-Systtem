@@ -6,11 +6,11 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   <title>Inventory Management System</title>  
   <script src="main.js" defer></script>
   <!-- <script src="script.js"></script> -->
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -34,24 +34,30 @@
   
 </head>
 
-<body onload= pages(1)>
+<!-- header -->
+
+
+<body >
+  
+
+
   
   
   <div class="topnav">
-
+   
     <ul>
       <li> 
         <a class="imgnav" href="product.html">
-          <img  class ="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7QAhyNE46cH3I4H3rFpA7-ZpRaoXNUznNXU2NI8IVjA&s" title="Home" >
+          <img  class ="logo" src="https://admin.enggenv.com/store/images/EE-LOGO_FULL.png" title="Home" >
           
         </a>
       </li>
-      <li><p    id="showcard" class= "navbarpages"href="#news">ADD PRODUCTS</p></li>
-      <li><p    onclick="  quantity_filter();" class= "navbarpages" href="#contact">LOW STOCK PRODUCTS</p></li>
-      <li><p    onclick="  outofStock();" class= "navbarpages" href="#contact">STOCK OUT PRODUCTS</p></li>
+      <li><p    id="showcard" href="#news">ADD PRODUCTS</p></li>
+      <li><p    onclick="  quantity_filter();"  href="#contact">LOW STOCK PRODUCTS</p></li>
+      <li><p    onclick="  outofStock();"  href="#contact">STOCK OUT PRODUCTS</p></li>
 
       <li> <div class="box"> <i >
-        <select id="data" class=" dropdown">
+        <select id="selectItem" class=" dropdown">
         
           <option value="name" name="name" id="name"> Name</option>
           <option value="price"  name="price">Price </option>
@@ -59,58 +65,55 @@
           <option value="quantity" id="totalstock" name="quantity">Total Stock</option>
           <option value="manufacturer" name="manufacturer">Manufacturer</option>
           <option value="date"  id="date" name="date">Date</option>
+          <option value="stock"  id="stocklefton" name="stock">Stock Left</option>
         </select>
            </i>
     
       <input type="text"  name="Searchval" id="Searchme"   onkeyup="search()" placeholder="Search..">
         
            
-    </div>
-  </li>
-  <li><button   class= "navbarpagesbutton" onclick="show_all();">SHOW All PRODUCTS</button></li>
-  <li><p   style="float: right;"  onclick="  Logout();" class= "logoutbtn">Logout</p></li>
+      </div>
+       </li>
+         <li><p    onclick="show_all();">SHOW All PRODUCTS</p></li>
 
 
-  <!-- <li  class= "navbarpages" style="float:right"><a class="active" href="#about">About</a></li> -->
-  
-  
-</div>
- 
+        <li> <div class="box"> <i >
+          <select id="data" class=" dropdown" onchange="Logout();">
+          
+            <option value="name"   name="name" id="name">   
+              <script >document.write(localStorage.getItem('name')) </script>
+                <!-- <script >document.write(alldata('loginname'));</script></option> -->
+
+            <option value="price"  onclick="  Logout();" name="price">Logout </option>
+            
+            
+                      </select>
+            </i>
+            
+
+
+          
+            
+                </div>
+       
+        </li>
+
+
+
+
    
   </ul>
-
   
-  <div class=" align_toggle">
 
 
-      
-      <!-- <i   style="font-size:36px;color: skyblue;margin-right: 10px;"  id="CARD"  class="fa-solid fa-table" ></i> -->
-      
 
 
-      
-      <!-- <i class="fa-solid fa-credit-card"  id="TABLE"style="font-size:36px; color: green;margin-right: 10px;" ></i> -->
-
-    
-  </div>
-
-  <h3  class="welcome">Welcome:  
-  
-     <script >document.write(localStorage.getItem('name'));</script> </h3>
   
  
      
 
-  <button style="color:black ;" class="xls"  onclick="export_data();" >Excel
-  <i class="fa fa-file-excel-o" style="font-size:36px ;margin-right: 0;" ></i>  </button>
-
-    <!-- <label class="switch"> -->
-      <!-- <input type="checkbox" id="myCheckbox" onchange="toggleCheck()" checked> -->
-   
-      <!-- <span class="slider round"> </span> -->
-   
-    <!-- </label> -->
-
+  
+ 
  
 
 
@@ -140,13 +143,15 @@
 
  
 
+  <button style="color:black ;" class="xls" id="excel" onclick="export_data();" >Excel
+    <i class="fa fa-file-excel-o" style="font-size:36px ;margin-right: 0;" ></i>  </button>
 
 
 
- 
-      
 </div>
 
+
+    
 <div class="bg-model">
 
 
@@ -182,7 +187,7 @@
 
      
         <div class="form-group">
-          <label for="" class="label">Unit Cost</label>
+          <label for="" class="label">Price </label>
           <input type="text"  name="" class="form-control" placeholder="Enter Price" id="Addprice" required>
 
           <div class="form-group">
@@ -365,8 +370,8 @@
    
   </table>
   <h2 class="searchresult"  id ="not_found"style="display: none;  "></h2>
-    <button onclick="pages(page - 3)" class="Prev">  <i class='fas fa-arrow-left'  style='font-size:36px'></i></button>
-    <button onclick="pages(page + 3)" class="Next"> <i class='fas fa-arrow-right color:blue;'  style='font-size:36px'></i></button> 
+    <button onclick="pages(page - 11)" class="Prev">  <i class='fas fa-arrow-left'  style='font-size:36px'></i></button>
+    <button onclick="pages(page + 11)" class="Next"> <i class='fas fa-arrow-right color:blue;'  style='font-size:36px'></i></button> 
     <!-- <button onclick="pages(0)"> boom</button> -->
   </body>
 

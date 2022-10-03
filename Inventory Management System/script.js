@@ -5,6 +5,10 @@ function submit() {
   // else updateproduct();
 }
 
+
+
+
+
 document.querySelector(".formproduct").addEventListener("click", function () {
   document.querySelector(".bg-model").style.display = "block";
 });
@@ -22,6 +26,15 @@ document.querySelector(".Returnsave").addEventListener("click", function () {
   document.querySelector(".Returndata").style.display = "none";
 });
 
+
+
+let name_logout = localStorage.getItem('name') ? localStorage.getItem('name') : ''
+
+// console.log(name_logout)
+if (name_logout == '') {
+    alert("you need to login first ")
+    window.location.href = "login.html"
+}
 // document.querySelector('.container').display.style="none";
 
 var uid;
@@ -30,6 +43,7 @@ var Detail_product;
 var Detail_productReturn;
 var tableid;
 const url = "http://localhost:5000/products/";
+const userdata = "http://localhost:5000/userdata/";
 // console.log(window.guid);
 
 function product_detail() {
@@ -192,7 +206,9 @@ function returnstock() {
  {
   alert("please enter name ")
  }
-
+ else if(valid.quantity> Detail_product.quantity){
+  alert("Cannot Enter False Data")
+ }
 
   
 
@@ -284,7 +300,7 @@ function showData() {
 <table class="table ">
 <tr >
 
-<th class="thtable1" > PRoduct NAME</th>
+<th class="thtable1" > Product Name</th>
 <th>Employee Name </th>
 <th>Stock Out  </th>  
 <th>Department  </th>  
@@ -344,7 +360,7 @@ function showData() {
 <table class="table "  id ="Outtable">
 <tr>
 
-<th> PRoduct NAME</th>
+<th> Product Name</th>
 <th>Employee Name </th>
 <th>Stock Out  </th>  
 <th>Department  </th>  
@@ -399,6 +415,12 @@ function returntable_search() {
   var dropdown_return = document.getElementById("ReturntableSearch").value;
   var search_return_table = document.getElementById("Searchreturntable").value;
   var searchnotfound= document.getElementById('searchnotfound');
+  var stockIn= document.getElementById('StockIN').value;
+//   if(ReturntableSearch=='StockIN'){
+//     returntable_records=returntable_records.filter(item=>
+//       item[stockIn]==[search_return_table])
+//   }
+// else{
 
   returntable_records = returntable_records.filter((item) =>
     item[dropdown_return]
@@ -406,6 +428,7 @@ function returntable_search() {
       .toString()
       .includes(search_return_table.toUpperCase().toString())
   );
+// }
 if(returntable_records.length){
 
 searchnotfound.style.display='none'
@@ -450,50 +473,50 @@ else{
 
   drow_return_table += `</table>`;
   table_Return.innerHTML = drow_return_table;
-  searchnotfound.innerHTML= "Search not Found"
+  searchnotfound.innerHTML= "Search not Found";
 
-  var StockIN = document.getElementById("StockIN").value;
-  var search_return_table = document.getElementById("Searchreturntable").value;
+//   var StockIN = document.getElementById("StockIN").value;
+//   var search_return_table = document.getElementById("Searchreturntable").value;
 
-  returntable_records = returntable_records.filter(
-    (item) =>
-      item[StockIN].toUpperCase().toString() ==
-      search_return_table.toUpperCase().toString()
-  );
+//   returntable_records = returntable_records.filter(
+//     (item) =>
+//       item[StockIN].toUpperCase().toString() ==
+//       search_return_table.toUpperCase().toString()
+//   );
 
-  drow_return_table = `<table class ="table" id="returnTable">
-<th> Product Name</th>
-<th  > Employee Name </th>
-<th> Stock In</th>
-<th>Department</th>
-<th >Date</th>
-<th>Action</th>
-  </tr>`;
+//   drow_return_table = `<table class ="table" id="returnTable">
+// <th> Product Name</th>
+// <th  > Employee Name </th>
+// <th> Stock In</th>
+// <th>Department</th>
+// <th >Date</th>
+// <th>Action</th>
+//   </tr>`;
 
-  for (z = 0; z < returntable_records.length; z++) {
-    if (dataid == returntable_records[z].uid) {
-      console.log(returntable_records);
+//   for (z = 0; z < returntable_records.length; z++) {
+//     if (dataid == returntable_records[z].uid) {
+//       console.log(returntable_records);
 
-      drow_return_table += `   
-         <tr class="tabledata"> 
+//       drow_return_table += `   
+//          <tr class="tabledata"> 
               
    
-            <td >  ${returntable_records[z].ProductName}</td>
-           <td>${returntable_records[z].CustomerName}</td>
-            <td>${returntable_records[z].QuantityIN}</td>
-            <td>${returntable_records[z].ReturnDepartment}</td>
-            <td>${returntable_records[z].datealloted}</td>
-            <td style=color:${
-              returntable_records[z].brokenquality ? "red" : "green"
-            }>${returntable_records[z].brokenquality ? "BROKEN" : "FINE"}</td>
+//             <td >  ${returntable_records[z].ProductName}</td>
+//            <td>${returntable_records[z].CustomerName}</td>
+//             <td>${returntable_records[z].QuantityIN}</td>
+//             <td>${returntable_records[z].ReturnDepartment}</td>
+//             <td>${returntable_records[z].datealloted}</td>
+//             <td style=color:${
+//               returntable_records[z].brokenquality ? "red" : "green"
+//             }>${returntable_records[z].brokenquality ? "BROKEN" : "FINE"}</td>
     
-            </td>
+//             </td>
             
             
             
-            </tr>`;
-    }
-  }
+//             </tr>`;
+//     }
+//   }
 }
 
 function search() {
@@ -510,16 +533,37 @@ function search() {
     : [];
   // user_records
 
-  var dropdown = document.getElementById("data").value;
+  var dropdown = document.getElementById("searchtable").value;
   var search = document.getElementById("Searchme").value;
-  var searchresult= document.getElementById('searchproductout');
+  var searchresult= document.getElementById('productassign');
+  var  stockout= document.getElementById('quantityout').value
 
-  user_records = user_records.filter((item) =>
-    item[dropdown]
-      .toUpperCase()
-      .toString()
-      .includes(search.toUpperCase().toString())
-  );
+console.log(stockout,dropdown)
+
+  // if(stockout==dropdown){
+
+  //   user_records=user_records.filter(item=>
+  //     item[stockout]==[search])
+  // }
+  // else if(stockout=''&& dropdown==stockout )
+  // {
+  //   user_records = user_records.filter((item) =>
+  //     item[dropdown].toString()
+  //       .toUpperCase()
+     
+  //       .includes(search.toString().toUpperCase())
+  //   );
+  // }
+  // else{
+    user_records = user_records.filter((item) =>
+      item[dropdown].toString()
+        .toUpperCase()
+     
+        .includes(search.toString().toUpperCase())
+    );
+
+  // }
+
   if(user_records.length){
     searchresult.style.display="none";
 
@@ -531,7 +575,7 @@ function search() {
   <table class="table " id="Outtable">
   <tr>
   
-  <th> PRoduct NAME</th>
+  <th> Product Name</th>
   <th>Employee Name </th>
   <th>Stock Out  </th>  
   <th>Department</th>
@@ -709,7 +753,7 @@ function showReturnData() {
 <table class="tableout " id="returnTable">
 <tr>
 
-<th> PRoduct NAME</th>
+<th> Product Name</th>
 <th>Employee Name </th>
 <th>Stock IN  </th>  
 <th>Department  </th>  
@@ -837,5 +881,7 @@ function Logout() {
       localStorage.removeItem('name')
       localStorage.removeItem('email')
   }
-
+else{
+  window.location.href="productDetail.html"
+}
 }

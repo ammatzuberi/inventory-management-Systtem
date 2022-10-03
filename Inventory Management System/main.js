@@ -68,8 +68,8 @@ var url = "http://localhost:5000/products/"
 
 var userdata;
 
-const itemPerPage=5;
-let page=1;
+const itemPerPage=9;
+let page=0;
 
 
 function pages(index){
@@ -104,9 +104,9 @@ function pages(index){
       }
     }
 
-   
+   var excel = document.getElementById('excel');
 function productshow() {
-
+excel.style.display="none";
     // toggleCheck();
     document.getElementById("cards").style.display = "none";
 
@@ -266,7 +266,7 @@ function productshow() {
 //     localStorage.setItem('ID', JSON.stringify(uid));;
 // }
 
-const setGuid = (uid) => {
+var setGuid = (uid) => {
     localStorage.setItem('ID', JSON.stringify(uid));;
 }
 productshow();
@@ -394,7 +394,7 @@ productshow();
 // }
 
 function show_all(){
-
+    excel.style.display="";
  show_allproducts ="";
 
 show_allproducts =`
@@ -446,14 +446,14 @@ show_allproducts +=
         </td>
         </tr>`
         document.getElementById("product").innerHTML= show_allproducts;
-
+        // export_data();
     }
 }
  
 
 
 function outofStock(){
-
+    excel.style.display="";
 
 var formcard= ''
 QDATA= '';
@@ -548,7 +548,7 @@ document.getElementById("product").innerHTML = QDATA;
 
 
 function quantity_filter() {
-
+    excel.style.display="";
     var QDATA;
     var formcard = '';
 
@@ -646,8 +646,6 @@ function quantity_filter() {
 
 
 
-
-
 function search() {
 
     // card();
@@ -656,38 +654,37 @@ function search() {
 
     // var formtable = document.getElementById("product");
     var formtable = " ";
+    
 
     var x = document.getElementById("Searchme").value;
-    var y = document.getElementById("data").value;
+
+    var y = document.getElementById("selectItem").value;
+
+    // var stockleft=  document.getElementById('stocklefton').value;
+    
 
     var noResult=document.getElementById('not_found')
     var tableheading= document.querySelector('.table');
-    // noResult.innerHTML="DATA NOT FOUND";
-   
-
-    //  let searchshow= document.getElementById('product');
-
-   
-// if(y==''){
-//    alert("please select the field you wanted to search")
-   
-// }
-// if(x==[y]){
-
-//     noResult.style.display='none';  
-// }
-
-// else{
  
-//     noResult.style.display='';              
-   
-// }    
+  if(y=='stock'){
+    newObj =userdata.filter(item=>
+        item[y]==[x])
+      
+  }
 
-     
-     newObj = userdata.filter(item =>
-            item[y].toString().toLowerCase()
+
+else{
+
+    newObj = userdata.filter(item =>
+           item[y].toString().toLowerCase()
     .includes(x.toString().toLowerCase()) )
     console.log(newObj);
+}
+
+
+
+
+     
 
     if(newObj.length)
         {
@@ -695,7 +692,14 @@ function search() {
             noResult.style.display='none';   
             tableheading.style.display='block'; 
         }
-        else{
+     else if(newObj.length==0){
+        noResult.style.display='none';  
+        tableheading.style.display='none';
+        // window.location.href='product.html'
+     
+
+     }
+        else{   
           
             noResult.style.display='';  
             tableheading.style.display='none';
@@ -703,14 +707,6 @@ function search() {
         }
         
 
-    // var namesearch= document.getElementById('name').value;
- 
-    // if (x == "") {
-    //     alert("Please Enter Data In Search ");
-    //     return false;
-    // }
-
-  // console.log(userdata);
 
     formtable=
 
@@ -739,31 +735,31 @@ function search() {
         `
      
 
-    for (z = 0; z < newObj.length; z++) {
+    for (let k= 0; k < newObj.length; k++) {
         
-        formtable += `
+        formtable += 
     
 
-      <tr class="tabledata"> 
+        `<tr onclick="setGuid('${newObj[k].uid}')"  id="myTable">
  
 
     
   
-        <td >${newObj[z].name}</td>
+        <td >${newObj[k].name}</td>
         
-        <td> <img class="image"   onclick="window.location='productDetail.html' "src="${newObj[z].image}" > </td>
-        <td style=color:${newObj[z].quantity < 20 ? "red" : "000"}> ${newObj[z].quantity}</td>
-        <td >₹ ${newObj[z].price}</td>
-        <td> ${newObj[z].manufacturer}</td>
-        <td  > ${userdata[z].stock} </td>
-        <td> ${newObj[z].date}</td>
-        <td >${userdata[z].area}</td>
-        <td >${userdata[z].serial}</td>
-        <td >${userdata[z].comment}</td>
-        <td >${userdata[z].summary}</td>   
+        <td> <img class="image"   onclick="window.location='productDetail.html' "src="${newObj[k].image}" > </td>
+        <td style=color:${newObj[k].quantity < 20 ? "red" : "000"}> ${newObj[k].quantity}</td>
+        <td >₹ ${newObj[k].price}</td>
+        <td> ${newObj[k].manufacturer}</td>
+        <td  > ${newObj[k].stock} </td>
+        <td> ${newObj[k].date}</td>
+        <td >${newObj[k].area}</td>
+        <td >${newObj[k].serial}</td>
+        <td >${newObj[k].comment}</td>
+        <td >${newObj[k].summary}</td>   
     <td> 
-        <i class="fa-solid fa-trash" onclick='deleteproduct("${userdata[z].uid}")'></i>
-        <i class="fa-solid fa-pen" onclick='editDataCall("${userdata[z].uid}")'></i>   </td>    
+        <i class="fa-solid fa-trash" onclick='deleteproduct("${newObj[k].uid}")'></i>
+        <i class="fa-solid fa-pen" onclick='editDataCall("${newObj[k].uid}")'></i>   </td>    
          </tr>`
 
 
@@ -773,23 +769,6 @@ function search() {
 
     document.getElementById("product").innerHTML = formtable;
    document.getElementById('not_found').innerHTML=" Sorry Product Not  Found"    ;
-
-    
-
-
-
-    
-
-
-
-// 
-
-
-
-
-
-
-
 
 
 }
@@ -829,6 +808,7 @@ function addproduct() {
         // Addstock:addstockinput.value.trim()
 
     };
+    console.log(item)
 
     fetch(url, {
         method: "POST",
@@ -987,12 +967,14 @@ function Logout() {
         localStorage.removeItem('name')
         localStorage.removeItem('email')
     }
-  
-
-}
+  else{
+    window.location.href="productDetail.html"
+  }
+  }
 
 //Table To excel
 function export_data(){
+
 	let data=document.querySelector('.table');
 	var fp=XLSX.utils.table_to_book(data,{sheet:'All_Products'});
 	XLSX.write(fp,{
@@ -1000,5 +982,6 @@ function export_data(){
 		type:'base64'
 	});
 	XLSX.writeFile(fp, 'Product.xlsx');
+  
 }
 // paging js 

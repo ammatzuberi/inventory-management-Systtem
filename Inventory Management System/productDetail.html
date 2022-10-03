@@ -33,16 +33,38 @@
   <div class="topnav">
 
     <ul>
+      <li> 
+        <a class="imgnav" href="product.html">
+          <img  class ="logo" src="https://admin.enggenv.com/store/images/EE-LOGO_FULL.png" title="Home" >
+          
+        </a>
+      </li>   
     
       
-      <li>    <a href="product.html"><button class='backbtn' > < BACK</button></a></li>
+ 
    
       <li><p    id="showcard"  class="formproduct"href="#news">PRODUCT OUT FORM</p></li>
       <li><p     class="Returnform" href="#contact">RETURN  FORM</p></li>
   
 
    
-  <li><p   style="float: right;"  onclick="  Logout();" class= "logoutbtn" href="#contact">Logout</p></li>
+      <div class="box"> 
+        <select id="data" class=" dropdown" onchange="Logout();">
+        
+          <option value="name"   name="name" id="name">   
+              <script >document.write(localStorage.getItem('name'));</script></option>
+          <option value="price"  onclick="  Logout();" name="price">Logout </option>
+          
+          
+                    </select>
+      
+
+
+         
+           
+               </div>
+      
+<!-- Example single danger button -->
 
   
   <!-- <li  class= "navbarpages" style="float:right"><a class="active" href="#about">About</a></li> -->
@@ -338,7 +360,7 @@
 <!--  -->
 <div class="maintable">
   <span style="padding-left: 10px" class=" headlinetable1"> PRODUCT OUT TABLE:</span>
-<select id="data" class=" dropdown1">
+<select id="searchtable" class=" dropdown1">
     <!-- <option value="">--SELECT-- </option> -->
     <option value="employeename" name="name">  EMPLOYEE NAME</option>
     <option value="department" name="name"> DEPARTMENT</option>
@@ -387,7 +409,13 @@
     
   
   </div>
-  <span  class="searchresultcss" id="searchproductout"></span>
+
+      
+    <span id="alertmessage">  </span>
+      <tbody id="product">
+       
+      </table>
+  <span  class="searchresultcss" id="productassign"></span>
 
   <span class="searchresultcssRETURN" id="searchnotfound"></span>
 
